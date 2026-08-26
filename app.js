@@ -3,7 +3,7 @@
    Pure JS + Supabase JS Client + Chart.js
    ═══════════════════════════════════════════════════════ */
 
-let supabase;
+let db;
 const charts = {};
 let currentPage = 'dashboard';
 let connected = false;
@@ -20,8 +20,8 @@ const COLOR_ARR = [COLORS.blue, COLORS.green, COLORS.orange, COLORS.purple, COLO
 // ── Init ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    supabase = window.supabase.createClient(REPORT_CONFIG.SUPABASE_URL, REPORT_CONFIG.SUPABASE_ANON_KEY);
-    const { error } = await supabase.from('app_settings').select('id').limit(1);
+    db = window.supabase.createClient(REPORT_CONFIG.SUPABASE_URL, REPORT_CONFIG.SUPABASE_ANON_KEY);
+    const { error } = await db.from('app_settings').select('id').limit(1);
     if (error && error.code === '42P01') {
       connected = false;
     } else {
@@ -161,7 +161,7 @@ function makeChart(canvasId, config) {
 
 // ── Supabase query helper ────────────────────────────
 async function q(table, { select = '*', from, to, dateCol = 'created_at', filters = {}, order = null, limit = null } = {}) {
-  let query = supabase.from(table).select(select);
+  let query = db.from(table).select(select);
   if (from && to) query = query.gte(dateCol, from).lte(dateCol, to);
   Object.entries(filters).forEach(([k, v]) => {
     if (v !== '' && v != null && v !== undefined) {
