@@ -1,0 +1,4 @@
+window.REPORT_CONFIG = {
+  SUPABASE_URL: 'https://ijdywzbazhhqawikomzf.supabase.co',
+  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlqZHl3emJhemhocWF3aWtvbXpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc3NjA3MzksImV4cCI6MjEwMzMzNjczOX0.Fp-QnW9BuWurp6R3vANeFH1PCVlDQQdrtjKlJ5y7Xzc'
+};
